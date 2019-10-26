@@ -906,6 +906,8 @@ pgsentinel_main(Datum main_arg)
 		}
 
 		uppercxt = CurrentMemoryContext;
+		ereport(LOG, (errmsg("uppercxt is:")));
+                MemoryContextStats(uppercxt);
 
 		SetCurrentStatementStartTimestamp();
 		StartTransactionCommand();
@@ -924,6 +926,8 @@ pgsentinel_main(Datum main_arg)
 		if (SPI_processed > 0)
 		{
 			MemoryContext oldcxt = MemoryContextSwitchTo(uppercxt);
+		        ereport(LOG, (errmsg("oldcxt is:")));
+                        MemoryContextStats(oldcxt);
 			gotactives=true;
 			for (i = 0; i < SPI_processed; i++)
 			{
