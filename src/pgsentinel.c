@@ -1074,6 +1074,33 @@ pgsentinel_main(Datum main_arg)
 
 				/* prepare to store the entry */
 				ash_prepare_store(ash_time,pidvalue,usenamevalue ? usenamevalue : "\0",client_portvalue, datidvalue, datnamevalue ? datnamevalue : "\0", appnamevalue ? appnamevalue : "\0",clientaddrvalue ? clientaddrvalue : "\0",backend_xminvalue, backend_startvalue,xact_startvalue,query_startvalue,state_changevalue, wait_event_typevalue ? wait_event_typevalue : "\0", wait_eventvalue ? wait_eventvalue : "\0", statevalue ? statevalue : "\0", client_hostnamevalue ? client_hostnamevalue : "\0",queryvalue ? queryvalue : "\0",backend_typevalue ? backend_typevalue : "\0", usesysidvalue,backend_xidvalue,blockersvalue,blockerpidvalue,blockerstatevalue ? blockerstatevalue : "\0");
+				if (appnamevalue != NULL) {
+				   pfree(appnamevalue);
+				}
+				if (wait_event_typevalue != NULL) {
+				   pfree(wait_event_typevalue);
+				}
+				if (wait_eventvalue != NULL) {
+				   pfree(wait_eventvalue);
+				}
+				if (statevalue != NULL) {
+				   pfree(statevalue);
+				}
+				if (blockerstatevalue != NULL) {
+				   pfree(blockerstatevalue);
+				}
+				if (client_hostnamevalue != NULL) {
+				   pfree(client_hostnamevalue);
+				}
+				if (queryvalue != NULL) {
+				   pfree(queryvalue);
+				}
+				if (backend_typevalue != NULL) {
+				   pfree(backend_typevalue);
+				}
+				if (clientaddrvalue != NULL) {
+				   pfree(clientaddrvalue);
+				}
 			}
 			MemoryContextSwitchTo(oldcxt);
 		}
