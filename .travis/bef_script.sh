@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+set -x -e
 
 export PG_VERSION=11
 export PG_DATADIR="/etc/postgresql/${PG_VERSION}/main"
