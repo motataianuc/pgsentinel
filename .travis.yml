@@ -13,7 +13,7 @@ before_install:
   - sudo docker pull centos:${OS_TYPE}${OS_VERSION}
 
 script:
-  - sudo docker run --rm=true -v `pwd`:/pgsentinel:rw centos:${OS_TYPE}${OS_VERSION} /bin/bash -c "ls -la /pgsentinel/.travis/"
+  - sudo docker run --rm=true -v `pwd`:/pgsentinel:rw centos:${OS_TYPE}${OS_VERSION} /bin/bash -c "/pgsentinel/.travis/bef_script.sh"
 
 after_failure:
   - .travis/cat_logs.sh
